@@ -1,4 +1,5 @@
 using API.Data;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,10 +28,10 @@ try
 }
 catch (Exception ex)
 {
-
     logger.LogError(ex,"Problem migrating data");
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -39,10 +40,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
  
-app.UseHttpsRedirection();
+app.UseRouting();
+
 app.UseCors(opt=>{
-    opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
-});
+    opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
+});                                     // AllowCredentials for cookies
 app.UseAuthorization();
 
 app.MapControllers();
