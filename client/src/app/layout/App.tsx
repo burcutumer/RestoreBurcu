@@ -18,16 +18,16 @@ import HomePage from "../../features/home/HomePage";
 import agent from "../api/agent";
 import NotFound from "../errors/NotFound";
 import ServerError from "../errors/ServerError";
-import { useAppDispatch, useAppSelector } from "../store/configureStore";
+import { useAppDispatch } from "../store/configureStore";
 import { getCookie } from "../util/util";
 import Header from "./Header";
 import LoadingComponent from "./LoadingComponent";
 
 
 function App() {      //our COMPONENT just a Funciton returns something div.,.
-  
+
   //const {setBasket} = useStoreContext();  { what we NEED from CONTEXT }  is setBasket
-  const dispatch = useAppDispatch(); //INSTEAD setBasket(bskt) from StoreContext dispatch(setBasket(bskt)) 
+  const dispatch = useAppDispatch(); //INSTEAD setBasket(bskt) from StoreContext dispatch(setBasket(bskt))
   const[loading,setLoading] = useState(true);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function App() {      //our COMPONENT just a Funciton returns something div.,.
           <Route path='/server-error' element={<ServerError />} />
           <Route path='/basket' element={<BasketPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
-          <Route path='/*' element={<NotFound />} /> //sirayla calisiyor en altta olmasi lazim
+          <Route path='/*' element={<NotFound />} /> {/*//sirayla calisiyor en altta olmasi lazim*/}
         </Routes>
 
       </Container>

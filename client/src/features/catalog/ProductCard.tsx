@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import agent from "../../app/api/agent";
 import { Product } from "../../app/models/product";
-import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import { useAppDispatch } from "../../app/store/configureStore";
 import { currencyFormat } from "../../app/util/util";
 import { setBasket } from "../basket/basketSlice";
 

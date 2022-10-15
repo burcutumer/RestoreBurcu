@@ -9,7 +9,7 @@ import { Product } from "../../app/models/product";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { removeItem, setBasket } from "../basket/basketSlice";
 
-export default function ProductDetails() {  
+export default function ProductDetails() {
     const { basket } = useAppSelector(state => state.basket);    //SELECTOR ANLAMAMIS MIYIM******
     const dispatch = useAppDispatch();
 
@@ -46,8 +46,8 @@ export default function ProductDetails() {
         } else {
             const updatedQuantity = item.quantity - quantity;
             agent.Basket.removeItem(product?.id!, updatedQuantity)
-                .then(() => dispatch(removeItem({productId: product?.id!, quantity: updatedQuantity})))
-                .catch(error => console.log(error))  //obj keyValue storedur.key-parametre isimleri ayni ise key belirtmezsin 
+                .then(() => dispatch(removeItem({ productId: product?.id!, quantity: updatedQuantity })))
+                .catch(error => console.log(error))  //obj keyValue storedur.key-parametre isimleri ayni ise key belirtmezsin
                 .finally(() => setSubmitting(false))
         }
     }
@@ -104,7 +104,7 @@ export default function ProductDetails() {
                     </Grid>
                     <Grid item xs={6}>
                         <LoadingButton
-                            disabled={item?.quantity === quantity || !item && quantity === 0}
+                            disabled={(item?.quantity === quantity )|| (!item && quantity === 0)}
                             loading={submitting}
                             onClick={handleUpdateCart}
                             sx={{ height: '55px' }}

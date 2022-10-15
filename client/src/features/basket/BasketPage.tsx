@@ -56,7 +56,7 @@ export default function BasketPage() {
               >
                 <TableCell component="th" scope="row">
                   <Box display='flex' alignItems='center'>
-                    <img src={item.pictureUrl} style={{ height: 50, marginRight: 20 }} />
+                    <img src={item.pictureUrl} alt='pic' style={{ height: 50, marginRight: 20 }} />
                     <span>{item.name}</span>
                   </Box>
                 </TableCell>

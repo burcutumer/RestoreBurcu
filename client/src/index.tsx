@@ -2,7 +2,6 @@ import { createBrowserHistory } from 'history';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
-import { StoreProvider } from './app/context/StoreContext';
 import App from './app/layout/App';
 import { store } from './app/store/configureStore';
 import reportWebVitals from './reportWebVitals';

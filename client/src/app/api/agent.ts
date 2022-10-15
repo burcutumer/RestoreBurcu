@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { Agent } from "http";
 import { toast } from "react-toastify";
 import { history } from "../..";
 
@@ -24,7 +23,7 @@ axios.interceptors.response.use(async response => {
                 const modelStateErrors:string[]=[];
                 for(const key in data.errors){
                     if(data.errors[key]){
-                       modelStateErrors.push(data.errors[key]) 
+                       modelStateErrors.push(data.errors[key])
                     }
                 }
                 throw modelStateErrors.flat();
