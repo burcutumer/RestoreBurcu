@@ -5,6 +5,7 @@ import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import App from './app/layout/App';
 import { store } from './app/store/configureStore';
 import reportWebVitals from './reportWebVitals';
+
 export const history = createBrowserHistory();
 
 const root = ReactDOM.createRoot(
