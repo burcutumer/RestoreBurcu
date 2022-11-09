@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Entities
 {
-    public class Product
+     public class Product
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,6 +15,6 @@ namespace API.Entities
         public string Type { get; set; }
         public string Brand { get; set; }
         public int QuantityInStock { get; set; }
-        
+
     }
 }
