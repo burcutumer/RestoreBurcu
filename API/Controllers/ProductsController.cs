@@ -7,6 +7,7 @@ using API.Data;
 using API.Entities;
 using API.Extensions;
 using API.RequestHelpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,6 +39,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
            var product = await _context.Products.FindAsync(id);

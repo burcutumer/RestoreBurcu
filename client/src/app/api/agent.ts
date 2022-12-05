@@ -2,6 +2,9 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "../..";
 import { PaginatedResponse } from "../models/pagination";
+import { store } from "../store/configureStore";
+
+const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
 
 axios.defaults.baseURL = 'http://localhost:5014/api/';
 axios.defaults.withCredentials = true;   //cookie backend frontend karsilikli gonderiyor iki tarafin da allow with credentials demesi lazim
@@ -10,7 +13,11 @@ const responseBody = (response: AxiosResponse) => response.data;
 // function responseBodyFn(response: AxiosResponse)
 //   {  return response.data; }
 
-const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
+axios.interceptors.request.use(config => {
+    const token = store.getState().account.user?.token;
+    if (token) config.headers!.Authorization = `Bearer ${token}`;
+    return config;
+})
 
 axios.interceptors.response.use(async response => {
     await sleep();
@@ -77,10 +84,18 @@ const Basket = { //BasketControllerin get post..metodlari
     addItem:(productId:number, quantity=1)=> requests.post(`basket?productId=${productId}&quantity=${quantity}`,{}),
     removeItem:(productId:number, quantity=1)=> requests.delete(`basket?productId=${productId}&quantity=${quantity}`),
 }
+
+const Account ={
+    login: (values: any) => requests.post('account/login',values),
+    register: (values: any) => requests.post('account/register',values),
+    cuurentUser: () => requests.get('account/currentUser')
+}
+
 const agent ={
     Catalog,
     TestErrors,
-    Basket
+    Basket,
+    Account
 }
 
 export default agent;
