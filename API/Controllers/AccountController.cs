@@ -78,7 +78,7 @@ namespace API.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var userBasket = await RetrieveBasket(User.Identity.Name);
-            
+
             return new UserDto
             {
                 Email = user.Email,
@@ -86,7 +86,19 @@ namespace API.Controllers
                 Basket = userBasket?.MapBasketToDto()
             };
         }
-        private async Task<Basket> RetrieveBasket(string buyerId)
+
+        [Authorize]
+        [HttpGet("savedAddress")]
+        public async Task<ActionResult<UserAddress>> GetAddress()
+        {
+            return await _userManager.Users
+                .Where(x => x.UserName == User.Identity.Name)
+                .Select(user => user.Address)
+                .FirstOrDefaultAsync();
+        }
+
+
+        private async Task<Basket> RetrieveBasket(string buyerId)            // can use Extension Method if u need it some other places
         {
             if (string.IsNullOrEmpty(buyerId))
             {
