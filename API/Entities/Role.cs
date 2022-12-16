@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace API.Entities
 {
-    public class User : IdentityUser<int>
+    public class Role: IdentityRole<int>
     {
-         //   identityUserda hersey var mail phone number....
-         public UserAddress Address { get; set; }
+
     }
 }

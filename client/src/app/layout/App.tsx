@@ -12,13 +12,13 @@ import { fetchCurrentUser } from "../../features/account/accountSlice";
 import Login from "../../features/account/Login";
 import Register from "../../features/account/Register";
 import BasketPage from "../../features/basket/BasketPage";
-import { fetchBasketAsync, setBasket } from "../../features/basket/basketSlice";
+import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
 import CheckoutPage from "../../features/checkout/CheckoutPage";
 import ContactPage from "../../features/contact/ContactPage";
 import HomePage from "../../features/home/HomePage";
-import agent from "../api/agent";
+import Orders from "../../features/orders/Orders";
 import NotFound from "../errors/NotFound";
 import ServerError from "../errors/ServerError";
 import { useAppDispatch } from "../store/configureStore";
@@ -84,7 +84,15 @@ function App() {      //our COMPONENT just a Funciton returns something div.,.
             path='/checkout'
             element={
               <RequireAuth>
-                < Catalog/>
+                < CheckoutPage/>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path='/orders'
+            element={
+              <RequireAuth>
+                < Orders/>
               </RequireAuth>
             }
           />
