@@ -15,7 +15,7 @@ import BasketPage from "../../features/basket/BasketPage";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
-import CheckoutPage from "../../features/checkout/CheckoutPage";
+import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 import ContactPage from "../../features/contact/ContactPage";
 import HomePage from "../../features/home/HomePage";
 import Orders from "../../features/orders/Orders";
@@ -84,7 +84,7 @@ function App() {      //our COMPONENT just a Funciton returns something div.,.
             path='/checkout'
             element={
               <RequireAuth>
-                < CheckoutPage/>
+                < CheckoutWrapper/>
               </RequireAuth>
             }
           />

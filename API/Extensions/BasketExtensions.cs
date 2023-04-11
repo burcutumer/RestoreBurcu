@@ -8,14 +8,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
 {
-    public static class BasketExtensions                     // static methos olcak this  olacak
+    public static class BasketExtensions
     {
-        public static BasketDto MapBasketToDto(this Basket basket)
+        public static BasketDto MapBasketToDto(this Basket basket)                   // STATIC method olcak this  olacak
         {
            return new BasketDto
             {
                 Id = basket.Id,
                 BuyerId = basket.BuyerId,
+                PaymentIntentId =basket.PaymentIntentId,
+                ClientSecret = basket.ClientSecret,
                 Items = basket.Items.Select(item => new BasketItemDto
                 {
                     ProductId = item.ProductId,
@@ -28,7 +30,7 @@ namespace API.Extensions
                 }).ToList()
             };
         }
-
+                          // IQUERYABLE  olacak      -----       this IQUERYABLE
         public static IQueryable<Basket> RetrieveBasketWithItems(this IQueryable<Basket> query, string buyerId)
         {
             return query.Include(i => i.Items).ThenInclude(p => p.Product).Where(b => b.BuyerId == buyerId);
